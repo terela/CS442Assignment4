@@ -5,13 +5,12 @@ import wordCount.util.MyLogger;
 
 import java.util.TreeMap;
 import java.util.List;
-
+import java.util.function.BiFunction;
 /**
  * PopulateTreeVisitor - visitor class that reads words from a file and populates a tree data structure
  */
 public class PopulateTreeVisitor implements Visitor {
 
-	private String inputFile;
 
 	/**
 	 * visit - reads words from the file and visits the Tree in order to populate it
