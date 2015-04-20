@@ -43,19 +43,6 @@ public class Driver {
 		int n = Integer.parseInt(args[2]);
 		int myLoggerValue = Integer.parseInt(args[3]);
 
-		// create the element(s)
-
-		FileProcessor fileProcessor = new FileProcessor(inputFile);
-
-		Tree tree = new Tree(fileProcessor);
-
-		// create the two vistor instances
-
-		Visitor populateTreeVisitor = new PopulateTreeVisitor();
-		Visitor wordCountVisitor = new WordCountVisitor();
-
-		// use the performance measurement loop
-
 		long startTime = System.currentTimeMillis();
 
 		// start of N loop
@@ -63,7 +50,10 @@ public class Driver {
 		for (int i = 0; i < n; i++) {
 
 			// declare / instantiate the tree and visitors
-
+		    FileProcessor fileProcessor = new FileProcessor(inputFile, outputFile);
+		    Tree tree = new Tree(fileProcessor);
+            Visitor populateTreeVisitor = new PopulateTreeVisitor();
+            Visitor wordCountVisitor = new WordCountVisitor();
 			// code to visit with the PopulateVisitor
 
 			tree.accept(populateTreeVisitor);

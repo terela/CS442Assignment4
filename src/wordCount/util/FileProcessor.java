@@ -6,24 +6,29 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.util.List;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.charset.Charset;
 /**
  * FileProcessor - contains methods to read a line and write to a file
  */
 public class FileProcessor {
 
 	private String inputFile;
+    private String outputFile;
 
 	/**
 	 * Constructor - constructs a file processor object
 	 *
 	 * @return the file processor object
 	 */
-	public FileProcessor(String inputFileIn) {
+	public FileProcessor(String inputFileIn, String outputFileIn) {
 
 		MyLogger.printToStdout(2, "Constructor in FileProcessor called.");
 
 		inputFile = inputFileIn;
-	
+        outputFile = outputFileIn;
 	}
 
 	// read line method
@@ -33,7 +38,7 @@ public class FileProcessor {
 	 *
 	 * @return line the current line of the file
 	 */
-	public String readLine(String inputFile) {
+	public String readLine() {
 
 		MyLogger.printToStdout(3, "readLine() in FileProcessor called.");
 
@@ -56,13 +61,30 @@ public class FileProcessor {
 			System.exit(1);
 
 		} finally {
-
+		    return line;
 		}
-		
-		return line;
-	
 	}
 	
+	/**
+	 * readAllLines - readAllLines of a files
+	 *
+	 * @return lines the lines in the file
+	 */
+    public List<String> readAllLines() {
+		MyLogger.printToStdout(3, "readALlLines() in FileProcessor called.");
+        List<String> lines = null;
+        try {
+            lines = Files.readAllLines((new File(inputFile)).toPath());
+        } catch (IOException e) {
+			MyLogger.printToStdout(0, "Error message in FileProcessor called.");
+
+			e.printStackTrace();
+
+			System.exit(1);
+        } finally {
+            return lines;
+        }
+    }
 	// write to file method
 	
 	/**
@@ -70,13 +92,13 @@ public class FileProcessor {
 	 *
 	 * @return none
 	 */
-	public void writeToFile(String value, String outputFile) {
+	public void writeToFile(String value) {
 
 		MyLogger.printToStdout(3, "writeToFile() in FileProcessor called.");
 
 		try {
 
-			PrintWriter output = new PrintWriter(new FileWriter(outputFile, true));
+			PrintWriter output = new PrintWriter(new FileWriter(outputFile, false));
 			
 			output.write(value);
 			
