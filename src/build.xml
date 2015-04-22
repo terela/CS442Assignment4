@@ -69,11 +69,12 @@
             <!-- <arg value="0"/> -->
             <arg value="${arg3}"/>
 
-            <!-- use 8G of ram  -->
-
-            <jvmarg value="-Xmn3G" />
+            <!-- use 8G of memory  -->
+            <!-- -->
+            <jvmarg value="-Xmn2G" />
             <jvmarg value="-Xms4G" />
             <jvmarg value="-Xmx8G" />
+
             <!-- disable assertions -->
             <jvmarg value="-da" />
 
