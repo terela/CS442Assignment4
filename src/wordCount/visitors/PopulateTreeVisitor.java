@@ -49,17 +49,21 @@ public class PopulateTreeVisitor implements Visitor {
 
         MyLogger.printToStdout(3, "visit() in PopulateTreeVisitor called.");
         List<String> words = tree.getFileProcessor().readAllLines();
-        String[] arr = words.toArray(new String[words.size()]);
+        int size = words.size();
+
+        String[] arr = words.toArray(new String[size]);
+
         ConcurrentHashMap<String, Integer> hashMap = new ConcurrentHashMap<String, Integer>(init_capacity, load, num_threads);
+        
         Thread[] threads = new Thread[num_threads-1];
-        int work = words.size()/num_threads;
+        int work = size/num_threads;
 
         for (int i = 0; i < num_threads-1; i++) {
             threads[i] = new Thread(new Worker(arr, i*work, (i+1)*work, hashMap));
             threads[i].start();
         }
 
-        Worker w = new Worker(arr, (num_threads-1)*work, words.size(), hashMap);
+        Worker w = new Worker(arr, (num_threads-1)*work, size, hashMap);
         w.run();
         try {
             for (Thread t: threads) {
