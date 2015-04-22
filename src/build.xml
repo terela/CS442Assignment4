@@ -69,6 +69,27 @@
             <!-- <arg value="0"/> -->
             <arg value="${arg3}"/>
 
+            <!-- use 8G of ram  -->
+
+            <jvmarg value="-Xmn3G" />
+            <jvmarg value="-Xms4G" />
+            <jvmarg value="-Xmx8G" />
+            <!-- disable assertions -->
+            <jvmarg value="-da" />
+
+
+            <!-- Use big pages -->
+            <!--
+            <jvmarg value="-XX:+UseLargePages"/>
+            -->
+
+            <!-- Use 64 bit -->
+            <jvmarg value="-d64" />
+            <jvmarg value="-server" />
+
+            <!-- Agressive opts -->
+            <jvmarg value="-XX:+AggressiveOpts" />
+
         </java>
 
     </target>
@@ -95,8 +116,8 @@
             <!-- Logger Level -->
             <!-- <arg value="0"/> -->
             <arg value="${arg3}"/>
-            
-            <jvmarg value="-Xrunhprof:cpu=y,file=log.txt,depth=4"/>
+
+            <jvmarg value="-Xrunhprof:cpu=y,file=log.txt,depth=6,interval=3,thread=y"/>
         </java>
     </target>
 </project>

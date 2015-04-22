@@ -3,7 +3,9 @@ package wordCount.visitors;
 import wordCount.treesForStrings.Tree;
 import wordCount.util.MyLogger;
 
+import java.util.Map;
 import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.BiFunction;
 /**
@@ -21,10 +23,19 @@ public class PopulateTreeVisitor implements Visitor {
 
 		MyLogger.printToStdout(3, "visit() in PopulateTreeVisitor called.");
         List<String> words = tree.getFileProcessor().readAllLines();
-        TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>();
+        HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
         for(String word: words) {
-            treeMap.compute(word, (key, value) -> (value == null) ? 1 : value + 1);
+            Integer temp = hashMap.put(word, 1);
+            if (temp != null) {
+                hashMap.put(word, temp + 1);
+            }
+
+            //treeMap.compute(word, (key, value) -> (value == null) ? 1 : value + 1);
+            
         }
+
+            
+        TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>(hashMap);
         tree.setTreeMap(treeMap);
 	}
 }

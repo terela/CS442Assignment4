@@ -21,11 +21,10 @@ public class WordCountVisitor implements Visitor {
 
 		// count the number of words and characters in the tree and write the values to the output file
         int numWords = 0;
-        int numUnique = 0;
+        int numUnique = tree.getTreeMap().size();
         int numChar = 0;
 
         for (Map.Entry<String, Integer> i: tree.getTreeMap().entrySet()) {
-            numUnique++;
             int val = i.getValue();
             numWords += val;
             numChar += val * i.getKey().length();
