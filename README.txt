@@ -46,6 +46,10 @@ FILES:
 		- 3: Output is printed when other methods are called
 		- 4: No output is printed at all
 
+JUSTIFICATION:
+
+We chose to use the tree map data structure instead of creating our own, as we believed that a standard data structure would perform extremely similar to any structure that we would have implemented. Instead of creating our own data structure, we instead opted for further optimization with the reading in of the file into a hash map and then populating the tree map with that data from the hash map. We used the maximum number of available threads on the current system running the program in order to greatly reduce the execution time of populating the tree and to save time in the summation of the total words, unique words, and characters. For final optimizations, we utilized flags in our build.xml file in order to allocate a higher amount of memory to improve program performance and called the aggressive optimization flag for the JVM. Lastly, throughout our development of the program, we made use of an ant task to profile the program and find the most inefficient portions of code in order to improve them, which resulted in all of our optimizations.
+
 SAMPLE OUTPUT:
 
 Alexs-MacBook-Air-6:wordCount alex$ ant -buildfile src/build.xml -Darg0=input1M.txt -Darg1=output.txt -Darg2=5 -Darg3=4 run
