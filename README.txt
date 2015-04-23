@@ -78,7 +78,7 @@ ant -buildfile src/build.xml -Darg0=new_in1.txt -Darg1=output.txt -Darg2=0 -Darg
 
 EXTRA CREDIT:
 
-We created an ant task to profile the program and used JVM flags for compiler optimization and efficiency.
+We created an ant task to profile the program and used JVM flags for compiler optimization and efficiency. We also included javadoc for all classes and methods.
 
 BIBLIOGRAPHY:
 
