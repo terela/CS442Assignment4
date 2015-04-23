@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class WordCountVisitor implements Visitor {
 
     private static final int num_threads = Runtime.getRuntime().availableProcessors();
-    
+
     private class Worker implements Runnable {
         private final ArrayList<Map.Entry<String, Integer>> arr;
 
@@ -66,12 +66,14 @@ public class WordCountVisitor implements Visitor {
 
         workers[num_threads-1] = new Worker(arr, (num_threads-1)*work, numUnique);
         workers[num_threads-1].run();
-        
+
         try {
             for (Thread t: threads) {
                 t.join();
             }
         } catch (Exception e) {
+			MyLogger.printToStdout(0, "Error message in WordCountVisitor called.");
+			e.printStackTrace();
             System.exit(1);
         }
 

@@ -16,11 +16,11 @@ public class MyLogger {
 	 * @return the myLogger object
 	 */
 	public MyLogger(int myLoggerValueIn) {
-		
+
 		MyLogger.printToStdout(2, "Constructor in MyLogger called.");
-		
+
 		setMyLoggerValue(myLoggerValueIn);
-	
+
 	}
 
 	/**
@@ -29,11 +29,11 @@ public class MyLogger {
 	 * @return none
 	 */
 	public static void setMyLoggerValue(int myLoggerValueIn) {
-		
+
 		MyLogger.printToStdout(3, "setMyLoggerValue() in MyLogger called.");
-		
+
 		LOGGER_VALUE = myLoggerValueIn;
-	
+
 	}
 
 	/**
@@ -42,11 +42,11 @@ public class MyLogger {
 	 * @return LOGGER_VALUE the current logger value
 	 */
 	public static int getMyLoggerValue() {
-		
+
 		MyLogger.printToStdout(3, "getMyLoggerValue() in MyLogger called.");
-		
+
 		return LOGGER_VALUE;
-	
+
 	}
 
 	/**
@@ -55,13 +55,13 @@ public class MyLogger {
 	 * @return none
 	 */
 	public static void printToStdout(int level, String myLoggerMessage) {
-		
+
 		if (LOGGER_VALUE == level  && LOGGER_VALUE != 4) {
-			
+
 			System.out.println("[" + level + "]:" + myLoggerMessage);
-		
+
 		}
-	
+
 	}
 
 
@@ -71,9 +71,9 @@ public class MyLogger {
 	 * @return string representation of the Logger object
 	 */
 	public String toString() {
-		
+
 		return "MyLogger";
-	
+
 	}
 
 }

@@ -16,7 +16,7 @@ public class PopulateTreeVisitor implements Visitor {
     private static final int init_capacity = 1024;
     private static final float load = 0.75f;
     private static final int num_threads = Runtime.getRuntime().availableProcessors();
-    
+
     private class Worker implements Runnable {
         private final String[] arr;
 
@@ -39,12 +39,12 @@ public class PopulateTreeVisitor implements Visitor {
         }
 
     }
-    
+
     /**
      * visit - reads words from the file and visits the Tree in order to populate it
      *
      * @return none
-     */ 
+     */
     public void visit(Tree tree) {
 
         MyLogger.printToStdout(3, "visit() in PopulateTreeVisitor called.");
@@ -54,7 +54,7 @@ public class PopulateTreeVisitor implements Visitor {
         String[] arr = words.toArray(new String[size]);
 
         ConcurrentHashMap<String, Integer> hashMap = new ConcurrentHashMap<String, Integer>(init_capacity, load, num_threads);
-        
+
         Thread[] threads = new Thread[num_threads-1];
         int work = size/num_threads;
 
@@ -70,6 +70,8 @@ public class PopulateTreeVisitor implements Visitor {
                 t.join();
             }
         } catch (Exception e) {
+			MyLogger.printToStdout(0, "Error message in WordCountVisitor called.");
+			e.printStackTrace();
             System.exit(1);
         }
 
@@ -78,7 +80,7 @@ public class PopulateTreeVisitor implements Visitor {
     }
 
     /* single threaded */
-    /* 
+    /*
        public void visit(Tree tree) {
 
        MyLogger.printToStdout(3, "visit() in PopulateTreeVisitor called.");
@@ -89,7 +91,7 @@ public class PopulateTreeVisitor implements Visitor {
        Integer temp = hashMap.put(word, 1);
        if (temp != null) {
        hashMap.put(word, temp + 1);
-       } 
+       }
        }
 
 
